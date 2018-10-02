@@ -9,8 +9,14 @@ from q4_softmaxreg import softmaxRegression, getSentenceFeature, accuracy, softm
 # Try different regularizations and pick the best!
 # NOTE: fill in one more "your code here" below before running!
 REGULARIZATION = None   # Assign a list of floats in the block below
+
+
+
 ### YOUR CODE HERE
-raise NotImplementedError
+
+REGULARIZATION = np.linspace(0.0001 + 2*0.00001, 0.0001 - 2*0.00001, 10)#np.exp(np.linspace(-3, 3, 7))
+
+
 ### END YOUR CODE
 
 # Load the dataset
@@ -86,7 +92,16 @@ BEST_REGULARIZATION = None
 BEST_WEIGHTS = None
 
 ### YOUR CODE HERE 
-raise NotImplementedError
+
+best_dev_acc = 0
+
+for result in results:
+    if best_dev_acc < result["dev"]:
+        best_dev_acc = result["dev"]
+        BEST_WEIGHTS = result["weights"]
+        BEST_REGULARIZATION = result["reg"]
+
+
 ### END YOUR CODE
 
 # Test your findings on the test set
